@@ -15,12 +15,12 @@ const inventory = [
     { title: 'harry Potter', price: 30 },
     { title: 'eloquent js', price: 22.3 },
 ];
-
+    
 const bookStore = createBookShop(inventory);
 bookStore.inventoryValue();
 bookStore.priceForTitle('eloquent js');
 
-// a refactored version of the function 
+// #region  a refactored version of the function 
 
 function createBookShop(inventory) {
     return {
