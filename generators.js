@@ -97,7 +97,7 @@ let team = {
     department: 'engineering',
     lead: 'angelo',
     engineer: 'rafael',
-    manager: 'mikel',
+    manager: 'miguel',
     [Symbol.iterator]: function* () {
         yield team.lead;
         yield team.engineer;
@@ -106,6 +106,34 @@ let team = {
     }
 }
 let result = [];
-for (const member of team) {
+for (const member of team) { 
     result.push(member);
 }
+
+/*******************           accessing a tree          ********************/
+
+class comment {
+    constructor(content, children) {
+        this.content = content;
+        this.children = children;
+    }
+    *[Symbol.iterator]() { // this is how you define a generator inside a class
+        yield this.content;
+        for (const child of this.children) { // yield every child 
+            yield* child; // array helpers like forEach and map does not work with generators
+        }
+    }
+}
+const children = [
+    new comment('hello word', []),
+    new comment('it is me', []),
+    new comment('yo ho', []),
+];
+
+const tree = new comment('the parent node', children)
+
+const values = [];
+for (const node of tree) {
+    values.push(node);
+}
+
