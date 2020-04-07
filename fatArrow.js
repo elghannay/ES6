@@ -12,4 +12,4 @@ let team = {
     }
 }
 
-team.teamSummary();
+team.teamSummaryOne();

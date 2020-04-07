@@ -4,6 +4,7 @@ const car = { type: 'Mercedez', price: 45 };
 
 const { type } = car;
 const { price } = car;
+// console.log(type);
 
 /******************* destructuring : can be used to pass arguments to functions *********************/
 

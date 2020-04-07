@@ -49,8 +49,7 @@ let members = [];
 for (const member of teamGenerator(team)) {
     members.push(member);
 }
-members;
-
+console.log(members);
 /******************* iterate through two separate generators ********************/
 let testingTeam = {
     lead: 'alfredo',
@@ -106,7 +105,7 @@ let team = {
     }
 }
 let result = [];
-for (const member of team) { 
+for (const member of team) {
     result.push(member);
 }
 

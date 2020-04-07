@@ -4,7 +4,7 @@ computers = [
     { brand: 'Dell' },
     { brand: 'sony' }
 ];
-
+// some => IF ANY 
 let lessThanTwo = computers.some(computer => computer.brand.length < 3);
 let moreThanTwo = computers.every(computer => computer.brand.length < 3);
 

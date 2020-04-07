@@ -32,7 +32,7 @@ fetch(url)
     .catch(console.log('ok', error));
 
 // the problem with the fetch is that the catch does not execute when we receive a bad response
-// from the server more precisely code 404, so the only way we reach that code is when we fait to reach the server
+// from the server more precisely code 404, so the only way we get that code is when we fail to reach the server
 
 
 
