@@ -4,7 +4,8 @@ let comments = [
     { postId: 4, user: 'yow', content: ' hello ' }
 ];
 
-
+// the iterator function should return true or false and 
+// and store the data that satisfy the comparison
 let result = comments.find(comment => comment.postId === 4);
 console.log(result);
 
@@ -15,4 +16,4 @@ function findIt(comments) {
         }
     }
 }
-console.log(findIt(comments));
+findIt(comments);

@@ -18,11 +18,11 @@ for (let i = 0; i < products.length; i++) {
         result.push(products[i])
 }
 // filter
-let vegetables = products.filter(product => product.type === 'vegetables');
+let vegetables = products.filter(product => product.type === 'vegetables' && quantity > 20);
 // comments for posts
 function commentsForPosts(comments, post) {
     return comments.filter(comment => {
         return comment.postId === post.id;
     })
 }
-console.log(commentsForPosts(comments,post));
+console.log(commentsForPosts(comments, post));
