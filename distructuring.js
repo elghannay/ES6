@@ -49,7 +49,8 @@ let user = {
     password: 'password',
     dayOfbirth: 34355,
     mood: '🤣',
-    city: 'tetouan'
+    city: 'tetouan',
+    personality: 'awesome'
 }
 function signUp({ username, password, dayOfbirth, mood, city }) {
     // logic goes here

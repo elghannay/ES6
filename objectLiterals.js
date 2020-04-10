@@ -15,12 +15,11 @@ const inventory = [
     { title: 'harry Potter', price: 30 },
     { title: 'eloquent js', price: 22.3 },
 ];
-    
+
 const bookStore = createBookShop(inventory);
 bookStore.inventoryValue();
 bookStore.priceForTitle('eloquent js');
 
-// #region  a refactored version of the function 
 
 function createBookShop(inventory) {
     return {
@@ -33,4 +32,26 @@ function createBookShop(inventory) {
         }
     }
 }
-        
+
+
+// computed properties multiple examples
+const role = 'host';
+const role2 = 'hostGator';
+const person = 'Jools holland';
+const person2 = ' maria banford';
+
+const team = {};
+team.role = person;
+team.role2 = person2;
+
+const team = {
+    [role]: person,
+    [role2]: person2
+}
+
+function addProps(obj, k, v) {
+    return {
+        ...obj,
+        [k]: v
+    }
+}
