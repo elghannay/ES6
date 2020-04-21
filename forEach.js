@@ -10,3 +10,10 @@ let sum = 0;
 numbers.forEach(number => sum += number);
 
 console.log(sum);
+
+// forEach helper has access to a helper function.
+
+const colors = ['blue', 'red', 'brown', 'orange'];
+const allLis = document.querySelectorAll('li');
+
+allLis.forEach((li, i) => li.style.color = colors[i]);
