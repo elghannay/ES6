@@ -41,6 +41,7 @@ const person = {
     console.log(this)
     }
 }
+
 often we want the method to have access to the current object data, but since the arrow function 
 does not get it own 'this' context, it always refers to the window object. ex: person.laugh()
 
@@ -58,7 +59,7 @@ const annoying = {
       console.log(this);         XXX  
       console.log(this.pickPhrases());
     }, 1000);
-  },
+  }
 why 'this' in XXX refers to the window object?   since the function that was executed by 
 setInterval( )   was not executed by us hence the context of it is as if it was invoked outside of the 
 object, exactly as a random function executed on the global scope.
