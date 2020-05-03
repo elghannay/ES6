@@ -1,6 +1,6 @@
 /*
  the benefit is actually that the object is now behave as a 
- self contained word which can interact with other properties
+ self contained world which can interact with other properties
  */
 
 /* refers the current execution scope it's going to give us 

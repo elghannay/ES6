@@ -15,5 +15,5 @@ console.log(sum);
 
 const colors = ['blue', 'red', 'brown', 'orange'];
 const allLis = document.querySelectorAll('li');
-
+// have access to the
 allLis.forEach((li, i) => li.style.color = colors[i]);

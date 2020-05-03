@@ -40,10 +40,13 @@ console.log(location);
 let firstRow = networks[1].name;
 console.log(firstRow);
 
-let google = { name: 'google', locations: ['tetouan', 'tanger', 'Safi'] };
-let {
-  locations: [locationOne, locationTwo, locationTree],
-} = google;
+let google = {
+  name: 'google',
+  locations: ['tetouan', 'tanger', 'Safi']
+};
+
+let { locations: [locationOne, locationTwo, locationTree] } = google;
+
 console.log(locationOne);
 console.log(locationTwo);
 console.log(locationTree);

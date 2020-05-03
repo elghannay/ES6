@@ -34,6 +34,12 @@ fetch(url)
 // the problem with the fetch is that the catch does not execute when we receive a bad response
 // from the server more precisely code 404, so the only way we get that code is when we fail to reach the server
 
+/******************************** */
+
+/*   basic example of a promise hand made   */
+/*   in which we manually add a resolve and reject callback  */
+
+/******************************** */
 
 const btn = document.querySelector('button');
 
@@ -44,7 +50,7 @@ const moveX = (element, amount, delay, onSuccess, onFailure) => {
     setTimeout(() => {
         const bodyBoundary = document.body.clientWidth;
         const elRight = element.getBoundingClientRect().right;
-        console.log('elright', elRight);
+        console.log('elRight', elRight);
         const currLeft = element.getBoundingClientRect().left;
         console.log('elLeft', currLeft);
         if (elRight + amount > bodyBoundary) {
@@ -122,6 +128,43 @@ moveX(
     }
 );
 
+const moveX = (element, amount, delay) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const bodyBoundary = document.body.clientWidth;
+            const elRight = element.getBoundingClientRect().right;
+            const currLeft = element.getBoundingClientRect().left;
+            if (elRight + amount > bodyBoundary) {
+                reject({ bodyBoundary, elRight, amount });
+            }
+            else {
+                element.style.transform = `translateX(${currLeft + amount}px)`;
+                resolve();
+            }
+        }, delay);
+    });
+};
+
+moveX(btn, 100, 1000)
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .then(() => moveX(btn, 100, 1000))
+    .catch(({ bodyBoundary, amount, elRight }) => {
+        console.log(`Cannot Move! Body is ${bodyBoundary}px wide`);
+        console.log(`Element is at ${elRight}px, ${amount}px is too large!`);
+    });
 
 //This is a FAKE Http Request Function
 //It takes 1 second to resolve or reject the promise, depending on the url that is passed in
@@ -169,3 +212,61 @@ fakeRequest('/dogs')
         console.log('REQUEST FAILED');
     });
 
+// fake api data point 
+
+const fakeRequest = (url) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const pages = {
+                '/users': [
+                    { id: 1, username: 'Bilbo' },
+                    { id: 5, username: 'Esmerelda' }
+                ],
+                '/users/1': {
+                    id: 1,
+                    username: 'Bilbo',
+                    upvotes: 360,
+                    city: 'Lisbon',
+                    topPostId: 454321
+                },
+                '/users/5': {
+                    id: 5,
+                    username: 'Esmerelda',
+                    upvotes: 571,
+                    city: 'Honolulu'
+                },
+                '/posts/454321': {
+                    id: 454321,
+                    title:
+                        'Ladies & Gentlemen, may I introduce my pet pig, Hamlet'
+                },
+                '/about': 'This is the about page!'
+            };
+            const data = pages[url];
+            if (data) {
+                resolve({ status: 200, data }); //resolve with a value!
+            }
+            else {
+                reject({ status: 404 }); //reject with a value!
+            }
+        }, 1000);
+    });
+};
+
+fakeRequest('/users')
+    .then((res) => {
+        console.log(res);
+        const id = res.data[0].id;
+        return fakeRequest(`/users/${id}`);
+    })
+    .then((res) => {
+        console.log(res);
+        const postId = res.data.topPostId;
+        return fakeRequest(`/posts/${postId}`);
+    })
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((err) => {
+        console.log('OH NO!', err);
+    });

@@ -15,9 +15,11 @@ console.log(colors);
 // determine the max grade 
 
 const grades = [34, 45, 656, 76, 8, 87, 7, 787, 55, 443];
-const maxGrade = grades.reduce((acc, current) => Math.max(acc, current))
-const minGrade = grades.reduce((acc, current) => Math.min(acc, current))
+const maxGrade = grades.reduce((acc, current) => Math.max(acc, current));
+const minGrade = grades.reduce((acc, current) => Math.min(acc, current));
 
+const max2 = Math.max(...grades);
+const min2 = Math.min(...grades);
 
 // more examples on reduce
 
