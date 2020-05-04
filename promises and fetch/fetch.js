@@ -56,9 +56,6 @@ fetch('https://swapi.dev/api/planets/')
     .then((response) => {
         if (!response.ok)
             throw new Error(`Status Code Error: ${response.status}`);
-        console.log('response', response);
-        console.log('/n');
-        console.log('response.json()', response.json());
         return response.json();
     })
     .then((data) => {
@@ -82,3 +79,72 @@ fetch('https://swapi.dev/api/planets/')
         console.log('SOMETHING WENT WRONG WITH FETCH!');
         console.log(err);
     });
+
+// fetching the next 10 planets
+
+fetch('https://swapi.dev/api/planets/')
+    .then((response) => {
+        if (!response.ok)
+            throw new Error(`Status Code Error: ${response.status}`);
+        return response.json();
+    })
+    .then((data) => {
+        for (const planet of data.results) {
+            console.log(planet.name);
+        }
+
+        const filmURL = data.next;
+        return fetch(filmURL);
+    })
+    .then((response) => {
+        if (!response.ok)
+            throw new Error(`Status Code Error: ${response.status}`);
+
+        return response.json();
+    })
+    .then((data) => {
+        console.log('planets on page 2');
+        for (const planet of data.results) {
+            console.log(planet.name);
+        }
+    })
+    .catch((err) => {
+        console.log('SOMETHING WENT WRONG WITH FETCH!');
+        console.log(err);
+    });
+
+// a refactored solution
+
+var checkStatus = (response) => {
+    if (!response.ok)
+        throw new Error(`Status Code Error: ${response.status}`);
+    return response.json();
+}
+
+var printPlanets = (data) => {
+    console.log("printing 10 more planets");
+    for (const planet of data.results) {
+        console.log(planet.name);
+    }
+    // return new Promise((resolve, reject) => {
+    //     resolve(data);
+    //     // adding the data argument is crucial for the then() TO work
+    // })
+    return Promise.resolve(data.next)
+}
+const getNextPlanet = (url = 'https://swapi.dev/api/planets/') => {
+    return fetch(url);
+}
+
+
+getNextPlanet()
+    .then(checkStatus)
+    .then(printPlanets)
+    .then(getNextPlanet)
+    .then(checkStatus)
+    .then(printPlanets)
+    .catch((err) => {
+        console.log('SOMETHING WENT WRONG WITH FETCH!');
+        console.log(err);
+    });
+
