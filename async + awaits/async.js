@@ -1,9 +1,8 @@
 async function add(x, y) {
-    if (typeof (x) !== "number" || typeof (y) !== "number")
+    if (typeof x !== 'number' || typeof y !== 'number')
         throw 'the parameters are not numbers';
     return x + y;
 }
-
 // a horrendous version that achieve the same result
 
 function add(x, y) {
