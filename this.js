@@ -1,6 +1,6 @@
 /*
  the benefit is actually that the object is now behave as a 
- self contained world which can interact with other properties
+ self contained world which can interact with other properties inside it
  */
 
 /* refers the current execution scope it's going to give us 
@@ -42,7 +42,8 @@ const person = {
     }
 }
 
-often we want the method to have access to the current object data, but since the arrow function 
+***********often we want the method to have access to the current object data, but**********8
+                                  since the arrow function 
 does not get it own 'this' context, it always refers to the window object. ex: person.laugh()
 
 MORE EXAMPLES : 
