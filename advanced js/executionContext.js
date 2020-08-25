@@ -10,3 +10,9 @@ function run() {
 run();
 
 // that's why we need to avoid using VAR and stick with let and const.
+// function declaration get hoisted and function expressions don't
+function mary(person1, person2) {
+  console.log(arguments);
+  return true;
+}
+console.log(mary('ahmed', 'youssef'));
