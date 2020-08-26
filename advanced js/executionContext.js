@@ -4,9 +4,9 @@
 
 var a = 'banana';
 function run() {
-  console.log(a);
+  console.log('RUN', a);
   var a = 'orange';
-  console.log(a);
+  console.log('RUN', a);
 }
 run();
 
@@ -38,6 +38,7 @@ function two() {
   var isValid;
 }
 function one() {
+  console.log(isValid);
   var isValid = false;
   two();
 }
@@ -45,9 +46,17 @@ var isValid = 'banana';
 one();
 console.log(isValid);
 
-// confusing parts about JS
+// confusing parts about JS : doodle can be executed only from inside the 'hey'
 const hey = function doodle() {
   return 'hey';
 };
 hey();
 doodle();
+
+// the code below returns undefined && lalalala
+console.log(teddy);
+console.log(sing());
+var teddy = 'hello';
+function sing() {
+  return 'lalalala';
+}
