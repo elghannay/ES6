@@ -39,3 +39,4 @@ Array.prototype.map = function () {
   return arr;
 };
 console.log([1, 2, 3].map());
+// even though the map function works with a callback
