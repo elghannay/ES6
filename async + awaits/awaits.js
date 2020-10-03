@@ -72,9 +72,18 @@ async function get3Pokemon() {
 
 get3Pokemon();
 
+const get3Pokemon = async function () {
+    const arrayOfPromises = urls.map(url => axios.get(url))
+    for await (let request of arrayOfPromises) {
+        const data = await request.json();
+        console.log(data.name);
+    }
+}
+
 // *******************************************
 // A better demonstration of the difference...
 // *******************************************
+
 function changeBodyColor(color, delay) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -85,6 +94,7 @@ function changeBodyColor(color, delay) {
 }
 
 // IN SEQUENCE
+
 async function lightShow() {
     await changeBodyColor('teal', 1000);
     await changeBodyColor('pink', 1000);
@@ -93,6 +103,7 @@ async function lightShow() {
 }
 // IN PARALLEL...
 // Everything is "sent off" at the same time
+
 async function lightShow() {
     const p1 = changeBodyColor('teal', 1000);
     const p2 = changeBodyColor('pink', 1000);
@@ -105,3 +116,12 @@ async function lightShow() {
 }
 
 lightShow();
+
+// an elegant parallel solution 
+
+async function lightShow2() {
+    const promises = [changeBodyColor('teal', 1000), changeBodyColor('pink', 1000),
+    changeBodyColor('indigo', 1000), changeBodyColor('violet', 1000)]
+
+    await Promise.all(promises);
+}

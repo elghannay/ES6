@@ -45,16 +45,19 @@ Promise.all(urls.map(url =>
         .catch(e => console.log(e))
 ))
 
-// handling errors with catch is not possible when working with async await 
-// a classic solution is to use try catch blocks.
+// handling errors with catch: a classic solution is to use try catch blocks.
+// but we can also use it as asynchronous().catch(console.log) again the function below
+// and catch any error that may occur in the function.
 
 const asynchronous = async function () {
     try {
         const [users, posts, photos] = await Promise.all(urls.map(url => fetch(url).then(res.json())))
-        // const [users, posts, photos] = await Promise.all(urls.map(url => {
-        //     const response = await fetch(url)
-        //     return response.json()
-        // }))
+
+        const [users, posts, photos] = await Promise.all(urls.map(url => {
+            const response = await fetch(url);
+            return response.json();
+        }))
+
         console.log(users);
         console.log(posts);
         console.log(photos);
@@ -72,4 +75,23 @@ const getData = async function () {
         const data = await request.json();
         console.log(data);
     }
+}
+
+// ============== parallel, sequential and race =============== //
+// output 2 will wait until output 1 resolves and so on. we pause execution. 
+async function sequential() {
+    const output1 = await a();
+    const output2 = await b();
+    const output3 = await c();
+
+    return `sequential execution : ${output1} ${output2} ${output3}`
+}
+
+
+
+async function parallel() {
+    const promises = [a(), b(), c()];
+    const [output1, output2, output3] = await Promise.all(promises);
+
+    return `parallel execution : ${output1} ${output2} ${output3}`
 }
