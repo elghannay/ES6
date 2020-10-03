@@ -1,3 +1,7 @@
+// promises allow you to run code even though the data may not be available just yet.
+// they are good for async programming, if you want you js code to not block code execution 
+// use em
+
 promise = new Promise((resolve, reject) => { resolve() });
 
 promise
@@ -270,3 +274,9 @@ fakeRequest('/users')
     .catch((err) => {
         console.log('OH NO!', err);
     });
+
+    // .catch can catch any error that may happen between .then
+
+// promise.all([promise1, promise2, promise3]).then(data =>{console.log(data)})
+
+// it waits until all the promises executes and then either resolve or reject. 
