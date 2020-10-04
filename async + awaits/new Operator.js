@@ -6,6 +6,7 @@ function makeColor(r, g, b) {
     color.g = g;
     color.b = b;
     color.rgb = function () {
+        // THIS : refers to the color object
         const { r, g, b } = this;
         return `rgb(${r}, ${g}, ${b})`;
     };
