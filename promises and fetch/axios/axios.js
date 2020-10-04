@@ -5,7 +5,6 @@ const printNextPlanets = ({ data }) => {
     return axios.get(data.next);
 }
 
-
 axios.get('https://swapi.dev/api/planets')
     .then(printNextPlanets)
     .then(printNextPlanets)
