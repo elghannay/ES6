@@ -47,8 +47,10 @@ Promise.all(urls.map(url =>
 
 // handling errors with catch: a classic solution is to use try catch blocks.
 // but we can also use it as asynchronous().catch(console.log) again the function below
-// and catch any error that may occur in the function.
+//  catch any error that may occur in the function.
 
+// try catch block catch errors only when working with synchronous code, 
+// but since we are using the async it works just fine.
 const asynchronous = async function () {
     try {
         const [users, posts, photos] = await Promise.all(urls.map(url => fetch(url).then(res.json())))
